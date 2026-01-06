@@ -1,11 +1,24 @@
-<div align="center">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# Alana Philereno - Estética Premium
 
-  <h1>Built with AI Studio</h2>
+Landing Page Mobile First focada em alta conversão e autoridade para a Dra. Alana Philereno.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🚀 Tecnologias
+- React 19
+- Tailwind CSS
+- Framer Motion (Animações)
+- Lucide React (Ícones)
+- Vite (Build Tool)
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## 📦 Como rodar localmente
+1. Clone o repositório
+2. Execute `npm install`
+3. Execute `npm run dev`
 
-</div>
+## 🌐 Deploy na Vercel
+1. Conecte seu repositório GitHub à Vercel.
+2. A Vercel detectará automaticamente as configurações do Vite.
+3. Clique em **Deploy**.
+
+---
+*Design Premium focado em conversão.*
