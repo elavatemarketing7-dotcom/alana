@@ -47,52 +47,47 @@ export interface QuizQuestion {
   id: string;
   question: string;
   options: string[];
-  next?: (answer: string) => string | null; // Função para determinar a próxima pergunta (ramificação)
+  descriptions?: string[];
+  next?: (answer: string) => string | null;
 }
 
+// Nota: O fluxo agora é isolado via App.tsx. 
+// start é mantido apenas como fallback, mas o sistema inicia direto em treat_1 ou course_1.
 export const QUIZ_FLOW: Record<string, QuizQuestion> = {
-  start: {
-    id: "start",
-    question: "Como posso te ajudar hoje?",
-    options: ["Quero realizar um procedimento", "Quero fazer um Curso (Hyaluron Pen)"],
-    next: (val) => val.includes("Curso") ? "course_1" : "treat_1"
-  },
-  // Ramo de Tratamento
   treat_1: {
     id: "treat_1",
-    question: "Qual o seu principal objetivo hoje?",
-    options: ["Rosto mais harmônico", "Corpo mais definido", "Tratar manchas ou acne", "Rejuvenescimento"],
+    question: "Qual área deseja transformar?",
+    options: ["Harmonização Facial", "Protocolo Corporal", "Rejuvenescimento Labial", "Tratamento de Pele"],
     next: () => "treat_2"
   },
   treat_2: {
     id: "treat_2",
-    question: "Você já realizou algum procedimento estético antes?",
-    options: ["Sim, realizo sempre", "Sim, há muito tempo", "Nunca realizei"],
+    question: "Você já realizou algum procedimento estético?",
+    options: ["Sim, busco manutenção", "Já fiz, mas quero naturalidade", "Nunca fiz, estou ansiosa"],
     next: () => "treat_3"
   },
   treat_3: {
     id: "treat_3",
-    question: "O que mais te preocupa em um procedimento?",
-    options: ["Naturalidade no resultado", "Segurança e saúde", "Dor durante o processo", "Tempo de recuperação"],
-    next: () => null // Fim
+    question: "O que é mais importante para você?",
+    options: ["Resultado 100% natural", "Segurança absoluta", "Rapidez na recuperação"],
+    next: () => null
   },
-  // Ramo de Curso
   course_1: {
     id: "course_1",
-    question: "Você já atua na área da estética?",
-    options: ["Sim, sou profissional", "Estou começando agora", "Quero mudar de carreira"],
+    question: "Qual seu nível de experiência atual?",
+    options: ["Sou iniciante do zero", "Já atuo mas quero faturar mais", "Sou profissional avançada"],
     next: () => "course_2"
   },
   course_2: {
     id: "course_2",
-    question: "Qual sua maior dificuldade atual?",
-    options: ["Atrair clientes", "Domínio da técnica", "Medo de agulhas/procedimentos", "Falta de faturamento"],
+    question: "Qual sua maior meta profissional?",
+    options: ["Liberdade Financeira", "Domínio da Técnica Hyaluron Pen", "Autoridade no Mercado Local"],
     next: () => "course_3"
   },
   course_3: {
     id: "course_3",
-    question: "Quando pretende iniciar sua especialização?",
-    options: ["Imediatamente", "Nos próximos 30 dias", "Estou me planejando"],
-    next: () => null // Fim
+    question: "Quando deseja começar sua formação?",
+    options: ["Imediatamente", "Nas próximas semanas", "Estou me planejando financeiramente"],
+    next: () => null
   }
 };
