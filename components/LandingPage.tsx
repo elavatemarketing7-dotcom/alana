@@ -17,7 +17,11 @@ import {
   GraduationCap,
   Users,
   TrendingUp,
-  Zap
+  Zap,
+  MapPin,
+  Clock,
+  Navigation,
+  Quote
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
@@ -45,7 +49,7 @@ export const LandingPage: React.FC = () => {
          </button>
       </div>
 
-      {/* HERO SECTION - REVISADA */}
+      {/* HERO SECTION */}
       <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden">
         <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full z-0">
           <img 
@@ -93,7 +97,7 @@ export const LandingPage: React.FC = () => {
                 onClick={() => handleCTA(true)}
                 className="flex-1 lg:flex-none lg:px-12 bg-white text-rose-600 border-2 border-rose-100 py-5 rounded-2xl font-bold text-lg shadow-sm flex items-center justify-center gap-3 transition-all"
               >
-                <GraduationCap className="w-5 h-5" />
+                <span className="shrink-0"><GraduationCap className="w-5 h-5" /></span>
                 Quero Estudar
               </motion.button>
             </div>
@@ -141,7 +145,7 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ACADEMY SECTION - DESTAQUE WINDOWS/DESKTOP */}
+      {/* ACADEMY SECTION */}
       <section className="py-24 bg-neutral-950 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-amber-500/5 blur-[120px] pointer-events-none" />
         
@@ -221,7 +225,129 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA FINAL - DUPLO DIRECIONAMENTO */}
+      {/* SEÇÃO FEEDBACK (O Wall of Love) */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
+             <div className="flex items-center justify-center gap-2 mb-2">
+                {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />)}
+             </div>
+             <span className="text-rose-500 font-bold uppercase tracking-[0.3em] text-xs">A voz das nossas pacientes</span>
+             <h2 className="text-4xl lg:text-5xl font-display font-bold text-neutral-800 italic">Wall of Love</h2>
+             <p className="text-neutral-500 max-w-md mx-auto">Mais do que procedimentos, criamos conexões e resgatamos sorrisos todos os dias.</p>
+          </motion.div>
+
+          <div className="relative">
+            {/* Gradientes laterais para efeito de carrossel suave no mobile */}
+            <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none lg:hidden" />
+            <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none lg:hidden" />
+
+            <div className="flex lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar">
+              {EXPERT.feedbackImages.map((img, idx) => (
+                <motion.div 
+                  key={idx}
+                  {...fadeInUp}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex-shrink-0 w-[280px] lg:w-full snap-center"
+                >
+                  <div className="relative group rounded-3xl overflow-hidden shadow-lg border border-neutral-100 bg-neutral-50 p-2">
+                    <img 
+                      src={img} 
+                      alt={`Feedback ${idx + 1}`} 
+                      className="w-full h-auto rounded-2xl group-hover:scale-[1.02] transition-transform duration-500" 
+                    />
+                    <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md">
+                      <Heart className="w-3 h-3 text-rose-500 fill-rose-500" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+             <motion.button
+               whileHover={{ scale: 1.05 }}
+               onClick={() => handleCTA(false)}
+               className="inline-flex items-center gap-3 text-rose-600 font-bold text-sm uppercase tracking-widest border-b-2 border-rose-100 pb-1 hover:border-rose-500 transition-all"
+             >
+                Ver mais no Instagram <Instagram className="w-4 h-4" />
+             </motion.button>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO: LOCALIZAÇÃO */}
+      <section className="py-24 bg-[#fcfbf7] border-t border-neutral-100">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <motion.div {...fadeInUp} className="text-center mb-16 space-y-4">
+             <span className="text-rose-500 font-bold uppercase tracking-[0.3em] text-xs">Onde nos encontrar</span>
+             <h2 className="text-4xl lg:text-5xl font-display font-bold text-neutral-800">Nossa <span className="text-rose-600 italic">Clínica</span></h2>
+             <p className="text-neutral-500 max-w-md mx-auto">Ambiente projetado para seu máximo conforto e segurança em Balneário Camboriú.</p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
+            {/* Mapa Interativo */}
+            <motion.div 
+              {...fadeInUp}
+              className="lg:col-span-2 relative h-[400px] lg:h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white"
+            >
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14216.54148967657!2d-48.6341295!3d-26.9902638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8b60338605c75%3A0x6d9004044140081e!2sBalne%C3%A1rio%20Cambori%C3%BA%2C%20SC!5e0!3m2!1spt-BR!2sbr!4v1716382049102!5m2!1spt-BR!2sbr" 
+                className="w-full h-full border-0" 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </motion.div>
+
+            {/* Card de Endereço */}
+            <motion.div 
+              {...fadeInUp}
+              className="bg-white p-8 lg:p-10 rounded-[3rem] shadow-xl border border-neutral-100 space-y-8 h-full flex flex-col justify-center"
+            >
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-rose-500 shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-neutral-800 text-lg">Endereço Premium</h4>
+                    <p className="text-neutral-500 text-sm leading-relaxed mt-1">
+                      Av. Atlântica, Edifício Visionaire, 1200<br/>
+                      Centro, Balneário Camboriú - SC
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-rose-500 shrink-0">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-neutral-800 text-lg">Horários</h4>
+                    <p className="text-neutral-500 text-sm leading-relaxed mt-1">
+                      Segunda a Sexta: 09h às 20h<br/>
+                      Sábados: 09h às 14h
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-neutral-200/50">
+                <button 
+                  onClick={() => window.open('https://maps.app.goo.gl/uX3L5x3Y5h5h5h5h5', '_blank')}
+                  className="w-full py-4 bg-neutral-900 text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-3 hover:bg-rose-600 transition-colors shadow-lg"
+                >
+                  <Navigation className="w-4 h-4" /> Traçar Rota no GPS
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
       <section className="py-24 bg-rose-600 relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10 max-w-3xl space-y-12">
           <div className="space-y-4 text-white">

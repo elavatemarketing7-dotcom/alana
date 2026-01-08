@@ -40,6 +40,16 @@ export const EXPERT = {
     "https://i.imgur.com/boe1aEi.png",
     "https://i.imgur.com/pEAUvME.png",
     "https://i.imgur.com/55Q96EK.png"
+  ],
+  feedbackImages: [
+    "https://i.imgur.com/9nctLOR.png",
+    "https://i.imgur.com/mKD2Mq6.png",
+    "https://i.imgur.com/X6SK7nv.png",
+    "https://i.imgur.com/oU7MvX8.png",
+    "https://i.imgur.com/U9Ny6SL.png",
+    "https://i.imgur.com/pXLjrsI.png",
+    "https://i.imgur.com/U1rJipc.png",
+    "https://i.imgur.com/eeM8oFY.png"
   ]
 };
 
@@ -51,8 +61,6 @@ export interface QuizQuestion {
   next?: (answer: string) => string | null;
 }
 
-// Nota: O fluxo agora é isolado via App.tsx. 
-// start é mantido apenas como fallback, mas o sistema inicia direto em treat_1 ou course_1.
 export const QUIZ_FLOW: Record<string, QuizQuestion> = {
   treat_1: {
     id: "treat_1",
